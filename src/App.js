@@ -1,13 +1,14 @@
-import './App.css';
+import "./App.css";
+import GameBoardComponent from "./components/GameBoardComponent/GameBoardComponent";
+import NavbarComponent from "./components/NavbarComponent/NavbarComponent.js";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>Restoration Project</p>
-      </header>
-    </div>
-  );
+	return (
+		<div className="App">
+			<NavbarComponent />
+			<GameBoardComponent />
+		</div>
+	);
 }
 
 export default App;

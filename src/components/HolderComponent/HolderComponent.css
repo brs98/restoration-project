@@ -1,0 +1,15 @@
+.container {
+    background-color: #fdfdbb;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 50px;
+    border-radius: 8px;
+}
+
+.container:hover {
+    background-color: #fdfd88;
+}
