@@ -1,11 +1,11 @@
 import React from "react";
 import "./GameBoardComponent.css";
-import Level1 from "../../levels/Level1";
+import { Example } from "../../levels/Example";
 
 function GameBoardComponent() {
 	return (
 		<div className="background">
-			<Level1 />
+            <Example />
 		</div>
 	);
 }

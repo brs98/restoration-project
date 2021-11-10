@@ -1,0 +1,7 @@
+.background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: #2f3c6c;
+}
