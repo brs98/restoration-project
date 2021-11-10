@@ -22,7 +22,7 @@ export const Example = () => {
 			setTimeout(() => setHolders(shuffle(holders)), 3000);
 			incrementNumShuffles(numShuffles + 1);
 		} else {
-			changeSelectMode(true);
+            setTimeout(() => changeSelectMode(true), 3000)
 		}
 	}, [holders, selectMode]);
 
@@ -36,9 +36,11 @@ export const Example = () => {
 						transition={spring}
 						style={{ backgroundColor }}
 						onClick={() => {
-							alert(`Selected ${holder}`);
-							changeSelectMode(!selectMode);
-							incrementNumShuffles(0);
+                            if (selectMode == true){
+                                alert(`Selected ${holder}`);
+                                changeSelectMode(!selectMode);
+                                incrementNumShuffles(0);
+                            }
 						}}
 					>
 						{holder}
