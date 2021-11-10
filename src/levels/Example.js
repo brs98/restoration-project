@@ -19,16 +19,18 @@ export const Example = () => {
     const backgroundColor = "#fdfdbb";
     const numPhases = 4;
 
+    //FIXME: Change entire useEffect function, not working properly because of asynchronous state
 	useEffect(() => {
         if (phase <= numPhases) {
             if (selectMode === false && numShuffles < numPhases) {
                 setTimeout(() => setHolders(shuffle(holders)), 3000);
                 incrementNumShuffles(numShuffles + 1);
-            } else {
+            }
+            else if (numShuffles === numPhases) {
                 setTimeout(() => changeSelectMode(true), 3000)
             }
         }
-	}, [holders, selectMode, phase, numShuffles]);
+	}, [holders, selectMode]);
 
 	return (
 		<>
@@ -47,7 +49,7 @@ export const Example = () => {
                                 else {
                                     alert("Sorry, the correct answer was " + correctAnswer(phase) + ".")
                                 }
-                                changeSelectMode(!selectMode);
+                                changeSelectMode(false);
                                 incrementNumShuffles(0);
                                 increasePhase(phase + 1);
                             }
