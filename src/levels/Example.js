@@ -28,7 +28,7 @@ export const Example = () => {
                 setTimeout(() => changeSelectMode(true), 3000)
             }
         }
-	}, [holders, selectMode, phase]);
+	}, [holders, selectMode, phase, numShuffles]);
 
 	return (
 		<>
@@ -40,7 +40,7 @@ export const Example = () => {
 						transition={spring}
 						style={{ backgroundColor }}
 						onClick={() => {
-                            if (selectMode == true){
+                            if (selectMode === true){
                                 if (isCorrect(phase, holder)) {
                                     alert("Correct!")
                                 }
@@ -78,18 +78,18 @@ const myKeyHolders = [
 ];
 
 const isCorrect = (phase, holder) => {
-    if (phase == 1) return holder == correctAnswer(phase);
-    else if (phase == 2) return holder == correctAnswer(phase);
-    else if (phase == 3) return holder == correctAnswer(phase);
-    else if (phase == 4) return holder == correctAnswer(phase);
-    else throw "Level doesn't exist!";
+    if (phase === 1) return holder === correctAnswer(phase);
+    else if (phase === 2) return holder === correctAnswer(phase);
+    else if (phase === 3) return holder === correctAnswer(phase);
+    else if (phase === 4) return holder === correctAnswer(phase);
+    else console.log("Level doesn't exist!");
 }
 
 const correctAnswer = (phase) => {
-    if (phase == 1) return "Jesus Christ";
-    else if (phase == 2) return "Peter";
-    else if (phase == 3) return "James";
-    else if (phase == 4) return "John";
-    else throw "Level doesn't exist!";
+    if (phase === 1) return "Jesus Christ";
+    else if (phase === 2) return "Peter";
+    else if (phase === 3) return "James";
+    else if (phase === 4) return "John";
+    else console.log("Level doesn't exist!");
 }
 
