@@ -14,17 +14,21 @@ export const Example = () => {
 	const [holders, setHolders] = useState(myKeyHolders);
 	const [selectMode, changeSelectMode] = useState(false);
 	const [numShuffles, incrementNumShuffles] = useState(0);
+    const [phase, increasePhase] = useState(1);
 
     const backgroundColor = "#fdfdbb";
+    const numPhases = 4;
 
 	useEffect(() => {
-		if (selectMode === false && numShuffles < 4) {
-			setTimeout(() => setHolders(shuffle(holders)), 3000);
-			incrementNumShuffles(numShuffles + 1);
-		} else {
-            setTimeout(() => changeSelectMode(true), 3000)
-		}
-	}, [holders, selectMode]);
+        if (phase <= numPhases) {
+            if (selectMode === false && numShuffles < numPhases) {
+                setTimeout(() => setHolders(shuffle(holders)), 3000);
+                incrementNumShuffles(numShuffles + 1);
+            } else {
+                setTimeout(() => changeSelectMode(true), 3000)
+            }
+        }
+	}, [holders, selectMode, phase]);
 
 	return (
 		<>
@@ -37,9 +41,15 @@ export const Example = () => {
 						style={{ backgroundColor }}
 						onClick={() => {
                             if (selectMode == true){
-                                alert(`Selected ${holder}`);
+                                if (isCorrect(phase, holder)) {
+                                    alert("Correct!")
+                                }
+                                else {
+                                    alert("Sorry, the correct answer was " + correctAnswer(phase) + ".")
+                                }
                                 changeSelectMode(!selectMode);
                                 incrementNumShuffles(0);
+                                increasePhase(phase + 1);
                             }
 						}}
 					>
@@ -66,3 +76,20 @@ const myKeyHolders = [
 	"Judas Thaddeus",
 	"Simon Zelotes",
 ];
+
+const isCorrect = (phase, holder) => {
+    if (phase == 1) return holder == correctAnswer(phase);
+    else if (phase == 2) return holder == correctAnswer(phase);
+    else if (phase == 3) return holder == correctAnswer(phase);
+    else if (phase == 4) return holder == correctAnswer(phase);
+    else throw "Level doesn't exist!";
+}
+
+const correctAnswer = (phase) => {
+    if (phase == 1) return "Jesus Christ";
+    else if (phase == 2) return "Peter";
+    else if (phase == 3) return "James";
+    else if (phase == 4) return "John";
+    else throw "Level doesn't exist!";
+}
+
